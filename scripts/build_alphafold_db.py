@@ -1,7 +1,6 @@
 # %% [markdown]
 # Build a local AlphaFold database and derive residue graphs.
 # %%
-from pathlib import Path
 import pandas as pd
 import torch
 from tqdm import tqdm
