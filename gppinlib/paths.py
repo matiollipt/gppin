@@ -14,6 +14,8 @@ EXTERNAL_DATA_DIR = DATA_DIR / "external"
 INTERIM_DATA_DIR = DATA_DIR / "interim"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 EMB_PER_PROTEIN_DIR = INTERIM_DATA_DIR / "per_protein"
+GRAPHLET_DIR = EXTERNAL_DATA_DIR / "graphlets"
+ALPHAFOLD_DIR = EXTERNAL_DATA_DIR / "alphafold"
 EMB_PER_RESIDUE_DIR = INTERIM_DATA_DIR / "per_residue"
 MODELS_DIR = PROJ_ROOT / "models"
 LOG_DIR = PROJ_ROOT / "logs"
@@ -32,6 +34,8 @@ for d in [
     INTERIM_DATA_DIR,
     PROCESSED_DATA_DIR,
     MODELS_DIR,
+    GRAPHLET_DIR,
+    ALPHAFOLD_DIR,
     LOG_DIR,
 ]:
     d.mkdir(parents=True, exist_ok=True)
