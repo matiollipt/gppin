@@ -17,4 +17,13 @@ Graphlet graphs for each protein should be placed under `data/external/graphlets
 python scripts/train_graphlet_model.py
 ```
 
+Preprocess the dataset and fetch AlphaFold structures with:
+
+```bash
+python scripts/preprocess_dataset.py
+python scripts/build_alphafold_db.py
+```
+
+See `.reports/structural_pipeline.md` for details.
+
 A summary of the model is provided in `.reports/report.md`.
