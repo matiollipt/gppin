@@ -24,6 +24,8 @@ def main():
         val_path = PROCESSED_DATA_DIR / "val.csv"
     train_df = pd.read_csv(train_path)
     val_df = pd.read_csv(val_path)
+    train_df = pd.read_csv(PROCESSED_DATA_DIR / "train.csv")
+    val_df = pd.read_csv(PROCESSED_DATA_DIR / "val.csv")
 
     train_ds = GraphletPairDataset(train_df, GRAPHLET_DIR)
     val_ds = GraphletPairDataset(val_df, GRAPHLET_DIR)
@@ -52,6 +54,13 @@ def main():
 
         MODELS_DIR.mkdir(exist_ok=True, parents=True)
         mlflow_torch.save_model(model, path=str(MODELS_DIR / "graphlet_model"))
+    for epoch in range(10):
+        loss = train_epoch(model, train_dl, optimizer, device)
+        acc, auc, val_loss = evaluate(model, val_dl, device)
+        print(f"Epoch {epoch:02d} | train_loss {loss:.4f} | val_loss {val_loss:.4f} | val_acc {acc:.3f} | val_auc {auc:.3f}")
+
+    MODELS_DIR.mkdir(exist_ok=True, parents=True)
+    torch.save(model.state_dict(), MODELS_DIR / "graphlet_model.pt")
 
 
 if __name__ == "__main__":
